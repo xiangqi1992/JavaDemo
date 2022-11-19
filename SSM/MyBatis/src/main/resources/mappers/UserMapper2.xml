@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.learning.mybatis.mapper.UserMapper2">
+
+    <!--int insertUser(User user);-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null,#{username},#{password},#{age},#{sex})
+    </insert>
+
+    <!--int deleteUser(@Param("id") int id);-->
+    <delete id="deleteUser">
+        delete from t_user where id = ${id}
+    </delete>
+
+    <!--int updateUser(User user);-->
+    <update id="updateUser">
+        update t_user set USER_NAME=#{username},PASS_WORD=#{password} where ID = #{id}
+    </update>
+
+    <!--User getUserById(@Param("id") int id);-->
+    <select id="getUserById" resultType="User">
+        select * from t_user where id = #{id}
+    </select>
+
+    <!--List<User> getUserList();-->
+    <select id="getUserList" resultType="User">
+        select * from t_user
+    </select>
+
+    <!-- ======================================================================================= -->
+
+    <!--int getCount();-->
+    <select id="getCount" resultType="_integer">
+        select count(id) from t_user
+    </select>
+
+    <!--Map<String, Object> getUserToMap(@Param("id") int id);-->
+    <select id="getUserToMap" resultType="map">
+        select * from t_user where id = #{id}
+    </select>
+    <!--结果：{password=123456, sex=男, id=1, age=23, username=admin}-->
+
+    <!--List<Map<String, Object>> getAllUserToMapList();-->
+    <select id="getAllUserToMapList" resultType="map">
+        select * from t_user
+    </select>
+
+    <!--Map<String, Object> getAllUserToMap();-->
+    <select id="getAllUserToMap" resultType="map">
+        select * from t_user
+    </select>
+    <!--
+     结果：
+    {
+    1={password=123456, sex=男, id=1, age=23, username=admin},
+    2={password=123456, sex=男, id=2, age=23, username=张三},
+    3={password=123456, sex=男, id=3, age=23, username=张三}
+    }
+    -->
+
+    <!--List<User> mohuQuery(@Param("mohu") String mohu);-->
+    <select id="mohuQuery" resultType="User">
+        <!--select * from t_user where username like '%${mohu}%'-->
+        <!--select * from t_user where username like concat('%',#{mohu},'%')-->
+        select * from t_user where username like "%"#{mohu}"%"
+    </select>
+
+    <!--int deleteMore(@Param("ids") String ids);-->
+    <delete id="deleteMore">
+        delete from t_user where id in (${ids})
+    </delete>
+
+    <!--List<User> getAllUser(@Param("tableName") String tableName);-->
+    <select id="getAllUser" resultType="User">
+        select * from ${tableName}
+    </select>
+
+    <!-- =================================自定义映射resultMap====================================== -->
+
+    <!--
+        resultMap：设置自定义映射
+        属性：
+            id：表示自定义映射的唯一标识
+            type：查询的数据要映射的实体类的类型
+        子标签：
+            id：设置主键的映射关系
+            result：设置普通字段的映射关系
+            association：设置多对一的映射关系
+            collection：设置一对多的映射关系
+        属性：
+            property：设置映射关系中实体类中的属性名
+            column：设置映射关系中表中的字段名
+    -->
+    <resultMap id="userMap" type="User">
+        <id property="id" column="id"></id>
+        <result property="userName" column="user_name"></result>
+        <result property="password" column="password"></result>
+        <result property="age" column="age"></result>
+        <result property="sex" column="sex"></result>
+    </resultMap>
+    <!--List<User> testMohu(@Param("mohu") String mohu);-->
+    <select id="mohuQuery" resultMap="userMap">
+        <!--select * from t_user where username like '%${mohu}%'-->
+        select id,user_name,password,age,sex from t_user where user_name like concat('%',#{mohu},'%')
+    </select>
+    <!--
+        若字段名和实体类中的属性名不一致，但是字段名符合数据库的规则（使用_），实体类中的属性名符合Java的规则（使用驼峰）
+        此时也可通过以下两种方式处理字段名和实体类中的属性的映射关系
+            a>可以通过为字段起别名的方式，保证和实体类中的属性名保持一致
+            b>可以在MyBatis的核心配置文件中设置一个全局配置信息mapUnderscoreToCamelCase，可以在查询表中数据时，自动将_类型的字段名转换为驼峰
+        例如：字段名user_name，设置了mapUnderscoreToCamelCase，此时字段名就会转换为userName
+    -->
+</mapper>
