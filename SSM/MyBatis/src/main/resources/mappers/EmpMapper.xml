@@ -5,55 +5,55 @@
 <mapper namespace="com.learning.mybatis.mapper.EmpMapper">
     <!-- 级联方式处理映射关系 -->
     <resultMap id="empDeptMap" type="Emp">
-        <id column="eid" property="eid"></id>
-        <result column="ename" property="ename"></result>
+        <id column="e_id" property="eid"></id>
+        <result column="e_name" property="ename"></result>
         <result column="age" property="age"></result>
-        <result column="sex" property="sex"></result>
-        <result column="did" property="dept.did"></result>
-        <result column="dname" property="dept.dname"></result>
+        <result column="gender" property="gender"></result>
+        <result column="d_id" property="dept.did"></result>
+        <result column="d_name" property="dept.dname"></result>
     </resultMap>
     <!--Emp getEmpAndDeptByEid(@Param("eid") int eid);-->
     <select id="getEmpAndDeptByEid" resultMap="empDeptMap">
-        select emp.*,dept.* from t_emp emp left join t_dept dept on emp.did = dept.did where emp.eid = #{eid}
+        select emp.*,dept.* from t_emp emp left join t_dept dept on emp.d_id = dept.d_id where emp.e_id = #{eid}
     </select>
 
     <!-- 使用association处理映射关系 -->
-    <resultMap id="empDeptMap" type="Emp">
-        <id column="eid" property="eid"></id>
-        <result column="ename" property="ename"></result>
+    <resultMap id="empDeptMap2" type="Emp">
+        <id column="e_id" property="eid"></id>
+        <result column="e_name" property="ename"></result>
         <result column="age" property="age"></result>
-        <result column="sex" property="sex"></result>
+        <result column="gender" property="gender"></result>
         <association property="dept" javaType="Dept">
-            <id column="did" property="did"></id>
-            <result column="dname" property="dname"></result>
+            <id column="d_id" property="did"></id>
+            <result column="d_name" property="dname"></result>
         </association>
     </resultMap>
-    <!--Emp getEmpAndDeptByEid(@Param("eid") int eid);-->
-    <select id="getEmpAndDeptByEid" resultMap="empDeptMap">
-        select emp.*,dept.* from t_emp emp left join t_dept dept on emp.did = dept.did where emp.eid = #{eid}
+    <!--Emp getEmpAndDeptByEid2(@Param("eid") int eid);-->
+    <select id="getEmpAndDeptByEid2" resultMap="empDeptMap2">
+        select emp.*,dept.* from t_emp emp left join t_dept dept on emp.d_id = dept.d_id where emp.e_id = #{eid}
     </select>
 
     <!-- 分步查询 -->
     <resultMap id="empDeptStepMap" type="Emp">
-        <id column="eid" property="eid"></id>
-        <result column="ename" property="ename"></result>
+        <id column="e_id" property="eid"></id>
+        <result column="e_name" property="ename"></result>
         <result column="age" property="age"></result>
-        <result column="sex" property="sex"></result>
+        <result column="gender" property="gender"></result>
         <!--
             select：设置分步查询，查询某个属性的值的sql的标识（namespace.sqlId）
             column：将sql以及查询结果中的某个字段设置为分步查询的条件
         -->
-        <association property="dept" select="com.learning.mybatis.mapper.DeptMapper.getEmpDeptByStep" column="did"></association>
+        <association property="dept" select="com.learning.mybatis.mapper.DeptMapper.getEmpDeptByStep" column="d_id"></association>
     </resultMap>
     <!--Emp getEmpByStep(@Param("eid") int eid);-->
     <select id="getEmpByStep" resultMap="empDeptStepMap">
-        select * from t_emp where eid = #{eid}
+        select * from t_emp where e_id = #{eid}
     </select>
 
 
 
     <!--List<Emp> getEmpListByDid(@Param("did") int did);-->
     <select id="getEmpListByDid" resultType="Emp">
-        select * from t_emp where did = #{did}
+        select * from t_emp where d_id = #{did}
     </select>
 </mapper>

@@ -52,19 +52,27 @@
         #{}的本质就是占位符赋值。
 ### 6、MyBatis的各种查询功能（基础）
 &emsp; 略，见
+[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)
+、
 [UserMapper2.java](src/main/java/com/learning/mybatis/mapper/UserMapper2.java)
 和
 [UserMapper2.xml](src/main/resources/mappers/UserMapper2.xml)
 ### 7、特殊SQL的执行（基础）
 &emsp; 略，见
+[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)
+、
 [UserMapper2.java](src/main/java/com/learning/mybatis/mapper/UserMapper2.java)
 和
 [UserMapper2.xml](src/main/resources/mappers/UserMapper2.xml)
 ### 8、自定义映射resultMap（基础）
+Emp Dept：多对一；
+Dept Emp：一对多。
 &emsp; 略，见
+[EmpTest.java](src/test/java/com/learning/mybatis/test/EmpTest.java)、
 [EmpMapper.java](src/main/java/com/learning/mybatis/mapper/EmpMapper.java)、
 [EmpMapper.xml](src/main/resources/mappers/EmpMapper.xml)
 和
+[DeptTest.java](src/test/java/com/learning/mybatis/test/DeptTest.java)、
 [DeptMapper.java](src/main/java/com/learning/mybatis/mapper/DeptMapper.java)、
 [DeptMapper.xml](src/main/resources/mappers/DeptMapper.xml)
 
@@ -151,7 +159,7 @@
     </plugins>
 ```
 #### 3、分页插件使用
-&emsp; 略，见[MyBatisTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)。
+&emsp; 略，见[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)。
 
     常用数据：
         pageNum：当前页的页码

@@ -8,7 +8,6 @@
     <!--引入properties文件，此时就可以${属性名}的方式访问属性值-->
     <properties resource="jdbc.properties"></properties>
 
-    <!--TODO-->
     <settings>
         <!--将表中字段的下划线自动转换为驼峰-->
         <setting name="mapUnderscoreToCamelCase" value="true"/>
@@ -30,7 +29,11 @@
         <!--以包为单位，设置改包下所有的类型都拥有默认的别名，即类名且不区分大小写-->
         <package name="com.learning.mybatis.pojo"/>
     </typeAliases>
-    <!--TODO-->
+
+    <plugins>
+        <!--设置分页插件-->
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
 
     <!--设置连接数据库的环境-->
     <!--
@@ -82,9 +85,7 @@
         -->
         <mapper resource="mappers/UserMapper1.xml"/>
         <mapper resource="mappers/UserMapper2.xml"/>
+        <mapper resource="mappers/DeptMapper.xml"/>
+        <mapper resource="mappers/EmpMapper.xml"/>
     </mappers>
-    <plugins>
-        <!--设置分页插件-->
-        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
-    </plugins>
 </configuration>

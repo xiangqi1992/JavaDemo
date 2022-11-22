@@ -1,4 +1,4 @@
-package com.learning.mybatis;
+package com.learning.mybatis.common;
 
 import java.util.List;
 

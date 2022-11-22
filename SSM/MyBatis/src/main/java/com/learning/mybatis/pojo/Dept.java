@@ -1,5 +1,7 @@
 package com.learning.mybatis.pojo;
 
+import java.util.List;
+
 /**
  * 部门实体类
  *
@@ -11,7 +13,7 @@ public class Dept {
     /**
      * 部门id
      */
-    private String did;
+    private int did;
 
     /**
      * 部门名称
@@ -19,15 +21,15 @@ public class Dept {
     private String dname;
 
     /**
-     * 办公地
+     * 部门员工
      */
-    private String loc;
+    private List<Emp> emps;
 
-    public String getDid() {
+    public int getDid() {
         return did;
     }
 
-    public void setDid(String did) {
+    public void setDid(int did) {
         this.did = did;
     }
 
@@ -39,11 +41,20 @@ public class Dept {
         this.dname = dname;
     }
 
-    public String getLoc() {
-        return loc;
+    public List<Emp> getEmps() {
+        return emps;
     }
 
-    public void setLoc(String loc) {
-        this.loc = loc;
+    public void setEmps(List<Emp> emps) {
+        this.emps = emps;
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "did='" + did + '\'' +
+                ", dname='" + dname + '\'' +
+                ", emps=" + emps +
+                '}';
     }
 }

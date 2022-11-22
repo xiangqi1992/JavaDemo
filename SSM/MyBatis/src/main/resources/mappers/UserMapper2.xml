@@ -6,7 +6,7 @@
 
     <!--int insertUser(User user);-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user values(null,#{username},#{password},#{age},#{sex})
+        insert into t_user values(#{id},#{userName},#{password},#{age},#{gender},#{email})
     </insert>
 
     <!--int deleteUser(@Param("id") int id);-->
@@ -16,7 +16,7 @@
 
     <!--int updateUser(User user);-->
     <update id="updateUser">
-        update t_user set USER_NAME=#{username},PASS_WORD=#{password} where ID = #{id}
+        update t_user set USER_NAME=#{userName},PASSWORD=#{password} where ID = #{id}
     </update>
 
     <!--User getUserById(@Param("id") int id);-->
@@ -40,7 +40,7 @@
     <select id="getUserToMap" resultType="map">
         select * from t_user where id = #{id}
     </select>
-    <!--结果：{password=123456, sex=男, id=1, age=23, username=admin}-->
+    <!--结果：{PASSWORD=123, GENDER=M, ID=2, USER_NAME=ybc, EMAIL=test2@163.com, AGE=20}-->
 
     <!--List<Map<String, Object>> getAllUserToMapList();-->
     <select id="getAllUserToMapList" resultType="map">
@@ -54,17 +54,18 @@
     <!--
      结果：
     {
-    1={password=123456, sex=男, id=1, age=23, username=admin},
-    2={password=123456, sex=男, id=2, age=23, username=张三},
-    3={password=123456, sex=男, id=3, age=23, username=张三}
+    2={PASSWORD=123, GENDER=M, ID=2, USER_NAME=ybc, EMAIL=test2@163.com, AGE=20},
+    3={PASSWORD=123, GENDER=M, ID=3, USER_NAME=Tom, EMAIL=test3@163.com, AGE=28},
+    4={PASSWORD=123, GENDER=W, ID=4, USER_NAME=Sandy, EMAIL=test4@163.com, AGE=21},
+    5={PASSWORD=123, GENDER=W, ID=5, USER_NAME=Billie, EMAIL=test5@163.com, AGE=24},
+    123={PASSWORD=123, GENDER=W, ID=123, USER_NAME=张三, AGE=23}
     }
     -->
-
     <!--List<User> mohuQuery(@Param("mohu") String mohu);-->
     <select id="mohuQuery" resultType="User">
-        <!--select * from t_user where username like '%${mohu}%'-->
-        <!--select * from t_user where username like concat('%',#{mohu},'%')-->
-        select * from t_user where username like "%"#{mohu}"%"
+        <!--select * from t_user where user_name like '%${mohu}%'-->
+        <!--select * from t_user where user_name like concat('%',#{mohu},'%')-->
+        select * from t_user where user_name like "%"#{mohu}"%"
     </select>
 
     <!--int deleteMore(@Param("ids") String ids);-->
@@ -98,12 +99,10 @@
         <result property="userName" column="user_name"></result>
         <result property="password" column="password"></result>
         <result property="age" column="age"></result>
-        <result property="sex" column="sex"></result>
+        <result property="gender" column="gender"></result>
     </resultMap>
-    <!--List<User> testMohu(@Param("mohu") String mohu);-->
-    <select id="mohuQuery" resultMap="userMap">
-        <!--select * from t_user where username like '%${mohu}%'-->
-        select id,user_name,password,age,sex from t_user where user_name like concat('%',#{mohu},'%')
+    <select id="mohuQuery2" resultMap="userMap">
+        select * from t_user where user_name like "%"#{mohu}"%"
     </select>
     <!--
         若字段名和实体类中的属性名不一致，但是字段名符合数据库的规则（使用_），实体类中的属性名符合Java的规则（使用驼峰）

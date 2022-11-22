@@ -17,7 +17,7 @@ create table T_USER
 alter table T_USER comment '用户信息表';
 
 -- 初始化数据
-INSERT INTO user (ID, USER_NAME, PASSWORD, AGE, GENDER, EMAIL)
+INSERT INTO T_USER (ID, USER_NAME, PASSWORD, AGE, GENDER, EMAIL)
 VALUES (1, 'Jone', '123', 18, 'M', 'test1@163.com'),
        (2, 'Jack', '123', 20, 'M', 'test2@163.com'),
        (3, 'Tom', '123', 28, 'M', 'test3@163.com'),

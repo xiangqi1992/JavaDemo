@@ -77,7 +77,7 @@ public interface UserMapper2 {
      * 将表中的数据以map集合的方式查询，一条数据对应一个map；若有多条数据，就会产生多个map集合，并
      * 且最终要以一个map的方式返回数据，此时需要通过@MapKey注解设置map集合的键，值是每条数据所对应的map集合
      */
-    @MapKey("id")
+    @MapKey("ID")
     Map<String, Object> getAllUserToMap();
 
     /**
@@ -101,5 +101,11 @@ public interface UserMapper2 {
      */
     List<User> getAllUser(@Param("tableName") String tableName);
 
+    /**
+     * 测试模糊查询
+     * @param mohu
+     * @return
+     */
+    List<User> mohuQuery2(@Param("mohu") String mohu);
     /*===========================其他查询 End===========================*/
 }

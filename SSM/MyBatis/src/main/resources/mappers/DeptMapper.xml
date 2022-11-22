@@ -2,42 +2,44 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.learning.mybatis.mapper.EmpMapper">
+<mapper namespace="com.learning.mybatis.mapper.DeptMapper">
 
+    <!-- 使用association处理映射关系 -->
     <resultMap id="deptEmpMap" type="Dept">
-        <id property="did" column="did"></id>
-        <result property="dname" column="dname"></result>
+        <id property="did" column="d_id"></id>
+        <result property="dname" column="d_name"></result>
         <!--
         ofType：设置collection标签所处理的集合属性中存储数据的类型
         -->
         <collection property="emps" ofType="Emp">
-            <id property="eid" column="eid"></id>
-            <result property="ename" column="ename"></result>
+            <id property="eid" column="e_id"></id>
+            <result property="ename" column="e_name"></result>
             <result property="age" column="age"></result>
             <result property="gender" column="gender"></result>
         </collection>
     </resultMap>
     <!--Dept getDeptEmpByDid(@Param("did") int did);-->
     <select id="getDeptEmpByDid" resultMap="deptEmpMap">
-        select dept.*,emp.* from t_dept dept left join t_emp emp on dept.did =
-                                                                    emp.did where dept.did = #{did}
+        select dept.*,emp.* from t_dept dept left join t_emp emp on dept.d_id =
+                                                                    emp.d_id where dept.d_id = #{did}
     </select>
 
+    <!-- 分步查询 -->
     <resultMap id="deptEmpStep" type="Dept">
-        <id property="did" column="did"></id>
-        <result property="dname" column="dname"></result>
+        <id property="did" column="d_id"></id>
+        <result property="dname" column="d_name"></result>
         <collection property="emps" fetchType="eager"
-                    select="com.atguigu.MyBatis.mapper.EmpMapper.getEmpListByDid" column="did">
+                    select="com.learning.mybatis.mapper.EmpMapper.getEmpListByDid" column="d_id">
         </collection>
     </resultMap>
     <!--Dept getDeptByStep(@Param("did") int did);-->
     <select id="getDeptByStep" resultMap="deptEmpStep">
-        select * from t_dept where did = #{did}
+        select * from t_dept where d_id = #{did}
     </select>
 
 
     <!--Dept getEmpDeptByStep(@Param("did") int did);-->
     <select id="getEmpDeptByStep" resultType="Dept">
-        select * from t_dept where did = #{did}
+        select * from t_dept where d_id = #{did}
     </select>
 </mapper>

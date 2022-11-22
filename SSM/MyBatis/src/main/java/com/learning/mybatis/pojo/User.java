@@ -11,7 +11,7 @@ public class User {
     /**
      * 用户id
      */
-    private Integer id;
+    private Long id;
 
     /**
      * 姓名
@@ -41,7 +41,7 @@ public class User {
     public User() {
     }
 
-    public User(Integer id, String userName, String password, Integer age, String gender, String email) {
+    public User(Long id, String userName, String password, Integer age, String gender, String email) {
         this.id = id;
         this.userName = userName;
         this.password = password;
@@ -50,11 +50,11 @@ public class User {
         this.email = email;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

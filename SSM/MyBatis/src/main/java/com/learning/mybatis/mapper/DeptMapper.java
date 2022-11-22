@@ -5,13 +5,6 @@ import org.apache.ibatis.annotations.Param;
 
 public interface DeptMapper {
     /**
-     * 分步查询的第二步：根据员工所对应的did查询部门信息
-     * @param did
-     * @return
-     */
-    Dept getEmpDeptByStep(@Param("did") int did);
-
-    /**
      * 根据部门id查新部门以及部门中的员工信息
      * @param did
      * @return
@@ -25,5 +18,10 @@ public interface DeptMapper {
      */
     Dept getDeptByStep(@Param("did") int did);
 
-
+    /**
+     * 分步查询的第二步：根据员工所对应的did查询部门信息
+     * @param did
+     * @return
+     */
+    Dept getEmpDeptByStep(@Param("did") int did);
 }

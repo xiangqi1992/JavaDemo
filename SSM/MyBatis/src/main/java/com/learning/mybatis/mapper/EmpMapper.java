@@ -7,11 +7,18 @@ import java.util.List;
 
 public interface EmpMapper {
     /**
-     * 通过级联方式或用association查询员工信息
+     * 通过级联方式查询员工信息
      * @param eid
      * @return
      */
     Emp getEmpAndDeptByEid(@Param("eid") int eid);
+
+    /**
+     * 通过用association查询员工信息
+     * @param eid
+     * @return
+     */
+    Emp getEmpAndDeptByEid2(@Param("eid") int eid);
 
     /**
      * 分步查询的第一步：通过分步查询查询员工信息
