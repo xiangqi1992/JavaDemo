@@ -1,26 +1,6 @@
-# MybatisDemo:一天学会使用Mybatis
-### 1、Mybatis简介
-    MyBatis 是一个 基于Java的 半自动的ORM框架。
-    名词：
-      DAO：Data Access Objects，数据访问层；
-      POJO：Plain Old Java Objects，普通的Java对象；
-      ORM：Object Relation Mapping，(Java的实体类)对象关系(型数据库)映射。
-      半自动：Hibernate不用写sql，叫全自动。Mybatis需要手写sql，叫半自动。
-    对比：
-      · JDBC
-        * SQL 夹杂在Java代码中，耦合度高，导致硬编码内伤;
-        * 代码冗长，开发效率低;
-        * utils。
-      · Hibernate 和 JPA 
-        * 操作简便，开发效率高;
-        * 程序中的长难复杂 SQL 需要绕过框架;
-        * 内部自动生产的 SQL，不容易做特殊优化;
-        * 基于全映射的全自动框架，大量字段的 POJO 进行部分映射时比较困难;
-        * 反射操作太多，导致数据库性能下降。
-      · MyBatis 
-        * 轻量级，性能出色;
-        * SQL 和 Java 编码分开，功能边界清晰。Java代码专注业务、SQL语句专注数据;
-        * 开发效率稍逊于HIbernate，但是完全能够接受。
+# MybatisPlusDemo:一天了解MybatisPlus
+### 1、MybatisPlus简介
+  简化Mybatis开发，只做增强。
 
 ### 2、版本说明（见POM文件）
     IDE：IDEA
@@ -32,7 +12,7 @@
 ### 3、主要文件（入门）
 + 核心配置文件 [mybatis-config.xml](src/main/resources/mybatis-config.xml):
     主要用于配置连接数据库的环境以及MyBatis的全局配置信息。
-+ mapper接口 [UserMapper1.java](src/main/java/com/learning/mybatis/mapper/UserMapper1.java)
++ mapper接口 [UserMapper1.java](src/main/java/com/learning/mybatisplus/mapper/UserMapper1.java)
 + MyBatis的映射文件 [UserMapper1.xml](src/main/resources/mappers/UserMapper1.xml)
 
 ### 4、测试（入门）
@@ -52,28 +32,20 @@
         #{}的本质就是占位符赋值。
 ### 6、MyBatis的各种查询功能（基础）
 &emsp; 略，见
-[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)
-、
-[UserMapper2.java](src/main/java/com/learning/mybatis/mapper/UserMapper2.java)
+[UserMapper2.java](src/main/java/com/learning/mybatisplus/mapper/UserMapper2.java)
 和
 [UserMapper2.xml](src/main/resources/mappers/UserMapper2.xml)
 ### 7、特殊SQL的执行（基础）
 &emsp; 略，见
-[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)
-、
-[UserMapper2.java](src/main/java/com/learning/mybatis/mapper/UserMapper2.java)
+[UserMapper2.java](src/main/java/com/learning/mybatisplus/mapper/UserMapper2.java)
 和
 [UserMapper2.xml](src/main/resources/mappers/UserMapper2.xml)
 ### 8、自定义映射resultMap（基础）
-Emp Dept：多对一；
-Dept Emp：一对多。
 &emsp; 略，见
-[EmpTest.java](src/test/java/com/learning/mybatis/test/EmpTest.java)、
-[EmpMapper.java](src/main/java/com/learning/mybatis/mapper/EmpMapper.java)、
+[EmpMapper.java](src/main/java/com/learning/mybatisplus/mapper/EmpMapper.java)、
 [EmpMapper.xml](src/main/resources/mappers/EmpMapper.xml)
 和
-[DeptTest.java](src/test/java/com/learning/mybatis/test/DeptTest.java)、
-[DeptMapper.java](src/main/java/com/learning/mybatis/mapper/DeptMapper.java)、
+[DeptMapper.java](src/main/java/com/learning/mybatisplus/mapper/DeptMapper.java)、
 [DeptMapper.xml](src/main/resources/mappers/DeptMapper.xml)
 
 
@@ -93,9 +65,7 @@ Dept Emp：一对多。
 + sql片段
 
 &emsp; 略，见
-[TagTest.java](src/test/java/com/learning/mybatis/test/TagTest.java)
-、
-[EmpMapper4Tag.java](src/main/java/com/learning/mybatis/mapper/EmpMapper4Tag.java)
+[EmpMapper4Tag.java](src/main/java/com/learning/mybatisplus/mapper/EmpMapper4Tag.java)
 和
 [EmpMapper4Tag.xml](src/main/resources/mappers/EmpMapper4Tag.xml)
 
@@ -161,7 +131,7 @@ Dept Emp：一对多。
     </plugins>
 ```
 #### 3、分页插件使用
-&emsp; 略，见[UserTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)。
+&emsp; 略，见[MyBatisTest.java](src/test/java/com/learning/mybatis/test/UserTest.java)。
 
     常用数据：
         pageNum：当前页的页码

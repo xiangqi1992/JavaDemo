@@ -87,5 +87,6 @@
         <mapper resource="mappers/UserMapper2.xml"/>
         <mapper resource="mappers/DeptMapper.xml"/>
         <mapper resource="mappers/EmpMapper.xml"/>
+        <mapper resource="mappers/EmpMapper4Tag.xml"/>
     </mappers>
 </configuration>

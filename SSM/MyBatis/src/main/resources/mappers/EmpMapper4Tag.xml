@@ -7,13 +7,13 @@
     <select id="getEmpListByMoreTJ" resultType="Emp">
         select * from t_emp where 1=1
         <if test="ename != '' and ename != null">
-            and ename = #{ename}
+            and e_name = #{ename}
         </if>
         <if test="age != '' and age != null">
             and age = #{age}
         </if>
-        <if test="sex != '' and sex != null">
-            and sex = #{sex}
+        <if test="gender != '' and gender != null">
+            and gender = #{gender}
         </if>
     </select>
 
@@ -22,13 +22,13 @@
         select * from t_emp
         <where>
             <if test="ename != '' and ename != null">
-                ename = #{ename}
+                e_name = #{ename}
             </if>
             <if test="age != '' and age != null">
                 and age = #{age}
             </if>
-            <if test="sex != '' and sex != null">
-                and sex = #{sex}
+            <if test="gender != '' and gender != null">
+                and gender = #{gender}
             </if>
         </where>
     </select>
@@ -45,13 +45,13 @@
         select * from t_emp
         <trim prefix="where" suffixOverrides="and">
             <if test="ename != '' and ename != null">
-                ename = #{ename} and
+                e_name = #{ename} and
             </if>
             <if test="age != '' and age != null">
                 age = #{age} and
             </if>
-            <if test="sex != '' and sex != null">
-                sex = #{sex}
+            <if test="gender != '' and gender != null">
+                gender = #{gender}
             </if>
         </trim>
     </select>
@@ -59,7 +59,7 @@
     <!--List<Emp> getEmpListByChoose(Emp emp);-->
     <!--sql片段，可以记录一段公共sql片段，在使用的地方通过include标签进行引入-->
     <sql id="empColumns">
-        eid,ename,age,sex,did
+        e_id,e_name,age,gender,d_id
     </sql>
     <!--choose、when、otherwise相当于if...else if..else-->
     <select id="getEmpListByChoose" resultType="Emp">
@@ -67,16 +67,13 @@
         <where>
             <choose>
                 <when test="ename != '' and ename != null">
-                    ename = #{ename}
+                    e_name = #{ename}
                 </when>
                 <when test="age != '' and age != null">
                     age = #{age}
                 </when>
-                <when test="sex != '' and sex != null">
-                    sex = #{sex}
-                </when>
-                <when test="email != '' and email != null">
-                    email = #{email}
+                <when test="gender != '' and gender != null">
+                    gender = #{gender}
                 </when>
             </choose>
         </where>
@@ -94,7 +91,7 @@
     <insert id="insertMoreEmp">
         insert into t_emp values
         <foreach collection="emps" item="emp" separator=",">
-            (null,#{emp.ename},#{emp.age},#{emp.sex},#{emp.email},null)
+            (#{emp.eid},#{emp.ename},#{emp.age},#{emp.gender},null)
         </foreach>
     </insert>
 
@@ -102,13 +99,13 @@
     <delete id="deleteMoreByArray1">
         delete from t_emp where
         <foreach collection="eids" item="eid" separator="or">
-            eid = #{eid}
+            e_id = #{eid}
         </foreach>
     </delete>
 
     <!--int deleteMoreByArray(int[] eids);-->
     <delete id="deleteMoreByArray2">
-        delete from t_emp where eid in
+        delete from t_emp where e_id in
         <foreach collection="eids" item="eid" separator="," open="(" close=")">
             #{eid}
         </foreach>

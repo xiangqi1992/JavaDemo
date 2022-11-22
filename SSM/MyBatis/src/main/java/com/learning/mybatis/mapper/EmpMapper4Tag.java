@@ -14,9 +14,9 @@ public interface EmpMapper4Tag {
 
     List<Emp> getEmpListByChoose(Emp emp);
 
-    int insertMoreEmp(List<Emp> emps);
+    int insertMoreEmp(@Param("emps")List<Emp> emps);
 
-    int deleteMoreByArray1(int[] eids);
+    int deleteMoreByArray1(@Param("eids")int[] eids);
 
-    int deleteMoreByArray2(int[] eids);
+    int deleteMoreByArray2(@Param("eids")int[] eids);
 }
