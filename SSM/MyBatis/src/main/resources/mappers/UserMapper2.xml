@@ -102,7 +102,7 @@
         <result property="gender" column="gender"></result>
     </resultMap>
     <select id="mohuQuery2" resultMap="userMap">
-        select * from t_user where user_name like "%"#{mohu}"%"
+        select id,user_name,password,age,gender from t_user where user_name like concat('%',#{mohu},'%')
     </select>
     <!--
         若字段名和实体类中的属性名不一致，但是字段名符合数据库的规则（使用_），实体类中的属性名符合Java的规则（使用驼峰）

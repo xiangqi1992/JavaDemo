@@ -10,6 +10,8 @@ import java.util.Map;
 public interface UserMapper2 {
     /*========================UserMapper1 改版 Start========================*/
     /**
+     * 7.4 添加时获取自增的主键（掌握）
+     *
      * 添加用户信息
      * @param user
      * @return
@@ -29,6 +31,8 @@ public interface UserMapper2 {
     int updateUser(User user);
 
     /**
+     * 6.1、查询结果为 一个 实体类对象
+     *
      * 根据用户id查询用户信息
      * @param id
      * @return
@@ -36,6 +40,8 @@ public interface UserMapper2 {
     User getUserById(@Param("id") int id);
 
     /**
+     * 6.2、查询结果为 一个 list集合
+     *
      * 查询所有用户信息
      * @return
      */
@@ -47,6 +53,8 @@ public interface UserMapper2 {
 
     /*============================其他查询 Start===========================*/
     /**
+     * 6.3、查询结果为 单个数据（字面量）
+     *
      * 查询用户的总记录数
      * @return
      * 在MyBatis中，对于Java中常用的类型都设置了类型别名
@@ -57,6 +65,8 @@ public interface UserMapper2 {
     int getCount();
 
     /**
+     * 6.4、查询结果为 一条数据的 map集合，key为对象属性值，value为属性值
+     *
      * 根据用户id查询用户信息为map集合
      * @param id
      * @return
@@ -64,6 +74,8 @@ public interface UserMapper2 {
     Map<String, Object> getUserToMap(@Param("id") int id);
 
     /**
+     * 6.5.1、查询结果为 多个map集合 组成的list
+     *
      * 查询所有用户信息为map集合
      * @return
      * 将表中的数据以map集合的方式查询，一条数据对应一个map；若有多条数据，就会产生多个map集合，此
@@ -72,6 +84,8 @@ public interface UserMapper2 {
     List<Map<String, Object>> getAllUserToMapList();
 
     /**
+     *  6.5.2、查询结果为 多条数据的 map集合，key为关键字，value为一条数据
+     *
      * 查询所有用户信息为map集合
      * @return
      * 将表中的数据以map集合的方式查询，一条数据对应一个map；若有多条数据，就会产生多个map集合，并
@@ -81,6 +95,9 @@ public interface UserMapper2 {
     Map<String, Object> getAllUserToMap();
 
     /**
+     * 7、特殊SQL的执行
+     * 7.1、模糊查询（掌握）
+     *
      * 测试模糊查询
      * @param mohu
      * @return
@@ -88,6 +105,8 @@ public interface UserMapper2 {
     List<User> mohuQuery(@Param("mohu") String mohu);
 
     /**
+     * 7.2、批量删除（了解）
+     *
      * 批量删除
      * @param ids
      * @return
@@ -95,6 +114,8 @@ public interface UserMapper2 {
     int deleteMore(@Param("ids") String ids);
 
     /**
+     * 7.3、动态设置表名（了解，意义不大）
+     *
      * 动态设置表名，查询所有的用户信息
      * @param tableName
      * @return
