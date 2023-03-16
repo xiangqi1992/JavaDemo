@@ -38,6 +38,11 @@ public class User {
      */
     private String email;
 
+    /**
+     * 删除标识
+     */
+    private String deleted;
+
     public User() {
     }
 
@@ -98,15 +103,24 @@ public class User {
         this.email = email;
     }
 
+    public String getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(String deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
                 ", userName='" + userName + '\'' +
-                ", passWord='" + password + '\'' +
+                ", password='" + password + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
                 ", email='" + email + '\'' +
+                ", deleted='" + deleted + '\'' +
                 '}';
     }
 }

@@ -5,7 +5,7 @@
 <mapper namespace="com.learning.mybatis.mapper.UserMapper1">
     <!--int insertUser();-->
     <insert id="insertUser">
-        insert into t_user values(123,'张三','123',23,'W',null)
+        insert into t_user values(123,'张三','123',23,'W',null,"N")
     </insert>
 
     <!--int deleteUser();-->

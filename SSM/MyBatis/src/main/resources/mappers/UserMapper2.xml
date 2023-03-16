@@ -6,7 +6,7 @@
 
     <!--int insertUser(User user);-->
     <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
-        insert into t_user values(#{id},#{userName},#{password},#{age},#{gender},#{email})
+        insert into t_user values(#{id},#{userName},#{password},#{age},#{gender},#{email},#{deleted})
     </insert>
 
     <!--int deleteUser(@Param("id") int id);-->
@@ -100,9 +100,10 @@
         <result property="password" column="password"></result>
         <result property="age" column="age"></result>
         <result property="gender" column="gender"></result>
+        <result property="deleted" column="deleted"></result>
     </resultMap>
     <select id="mohuQuery2" resultMap="userMap">
-        select id,user_name,password,age,gender from t_user where user_name like concat('%',#{mohu},'%')
+        select id,user_name,password,age,gender,deleted from t_user where user_name like concat('%',#{mohu},'%')
     </select>
     <!--
         若字段名和实体类中的属性名不一致，但是字段名符合数据库的规则（使用_），实体类中的属性名符合Java的规则（使用驼峰）
