@@ -9,3 +9,4 @@ bin/
 .checkstyle
 .factorypath
 *logs/server.log
+*log/*.log
